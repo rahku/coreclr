@@ -84,7 +84,7 @@ class DomainFile
     DomainFile() {LIMITED_METHOD_CONTRACT;};
 #endif
 
-    LoaderAllocator *GetLoaderAllocator();
+    virtual LoaderAllocator *GetLoaderAllocator();
 
     PTR_AppDomain GetAppDomain()
     {
@@ -519,6 +519,12 @@ public:
     }
 
 
+   LoaderAllocator *GetLoaderAllocator()
+   {
+       LIMITED_METHOD_CONTRACT;
+       return m_pLoaderAllocator;
+   }
+
     // Returns security information for the assembly based on the codebase
     void GetSecurityIdentity(SString &codebase, SecZone *pdwZone, DWORD dwFlags, BYTE *pbUniqueID, DWORD *pcbUniqueID);
 
@@ -793,8 +799,21 @@ private:
     Volatile<bool>                          m_fHostAssemblyPublished;
     Volatile<bool>                          m_fCalculatedShouldLoadDomainNeutral;
     Volatile<bool>                          m_fShouldLoadDomainNeutral;
+    LoaderAllocator*                        m_pLoaderAllocator;
+    DomainAssembly*                         m_NextDomainAssemblyInSameALC;
 
   public:
+      DomainAssembly* GetNextDomainAssemblyInSameALC()
+      {
+          return m_NextDomainAssemblyInSameALC;
+      }
+
+      void SetNextDomainAssemblyInSameALC(DomainAssembly* domainAssembly)
+      {
+          _ASSERTE(m_NextDomainAssemblyInSameALC == NULL);
+          m_NextDomainAssemblyInSameALC = domainAssembly;
+      }
+
     // Indicates if the assembly can be cached in a binding cache such as AssemblySpecBindingCache.
     inline bool CanUseWithBindingCache()
     { STATIC_CONTRACT_WRAPPER; return GetFile()->CanUseWithBindingCache(); }

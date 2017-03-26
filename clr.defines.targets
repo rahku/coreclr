@@ -22,6 +22,7 @@
         <CDefines Condition="'$(FeatureXplatEventSource)' == 'true'">$(CDefines);FEATURE_EVENTSOURCE_XPLAT</CDefines>
         <CDefines Condition="'$(FeatureFullNGen)' == 'true'">$(CDefines);FEATURE_FULL_NGEN</CDefines>
         <CDefines Condition="'$(FeatureHijack)' == 'true'">$(CDefines);FEATURE_HIJACK</CDefines>
+        <CDefines Condition="'$(FeatureCollectibleALC)' == 'true'">$(CDefines);FEATURE_COLLECTIBLE_ALC</CDefines>
         <CDefines Condition="'$(FeatureInteropDebugging)' == 'true'">$(CDefines);FEATURE_INTEROP_DEBUGGING</CDefines>
         <CDefines Condition="'$(FeatureIpcman)' == 'true'">$(CDefines);FEATURE_IPCMAN</CDefines>
         <CDefines Condition="'$(FeatureIsolatedStorageQuotaEnforcement)' == 'true'">$(CDefines);FEATURE_ISOLATED_STORAGE_QUOTA_ENFORCEMENT</CDefines>
@@ -84,6 +85,7 @@
         <DefineConstants Condition="'$(FeatureCoreFxGlobalization)' == 'true'">$(DefineConstants);FEATURE_COREFX_GLOBALIZATION</DefineConstants>
         <DefineConstants Condition="'$(FeatureDisplayCultureInfo)' == 'true'">$(DefineConstants);FEATURE_DISPLAY_CULTURE_INFO</DefineConstants>
         <DefineConstants Condition="'$(FeatureDisplayRegionInfo)' == 'true'">$(DefineConstants);FEATURE_DISPLAY_REGION_INFO</DefineConstants>
+        <DefineConstants Condition="'$(FeatureCollectibleALC)' == 'true'">$(DefineConstants);FEATURE_COLLECTIBLE_ALC</DefineConstants>
         <DefineConstants Condition="'$(FeatureHosting)' == 'true'">$(DefineConstants);FEATURE_HOSTING</DefineConstants>
         <DefineConstants Condition="'$(FeatureImplicitLongPath)' == 'true'">$(DefineConstants);FEATURE_IMPLICIT_LONGPATH</DefineConstants>
         <DefineConstants Condition="'$(FeatureIsolatedStorageQuotaEnforcement)' == 'true'">$(DefineConstants);FEATURE_ISOLATED_STORAGE_QUOTA_ENFORCEMENT</DefineConstants>

@@ -42,6 +42,7 @@
     <FeatureICastable>true</FeatureICastable>
     <FeatureCominteropUnmanagedActivation>true</FeatureCominteropUnmanagedActivation>
     <FeatureCominteropWinRTManagedActivation>true</FeatureCominteropWinRTManagedActivation>
+    <FeatureCollectibleALC>true</FeatureCollectibleALC>
     <FeatureLazyCOWPages Condition="('$(TargetArch)' == 'i386') or ('$(TargetArch)' == 'arm')">true</FeatureLazyCOWPages>
     <FeatureLegacyNetCFDbgHostControl>true</FeatureLegacyNetCFDbgHostControl>
     <FeatureRandomizedStringHashing>true</FeatureRandomizedStringHashing>

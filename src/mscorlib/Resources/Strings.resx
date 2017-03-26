@@ -2530,6 +2530,21 @@
   <data name="Arugment_EmitMixedContext2" xml:space="preserve">
     <value>Type '{0}' was not loaded in the ReflectionOnly context but the AssemblyBuilder was created as AssemblyBuilderAccess.ReflectionOnly.</value>
   </data>
+  <data name="AssemblyLoadContext_Constructor_CannotInstantiateWhileUnloading" xml:space="preserve">
+    <value>Cannot instantiate an AssemblyLoadContext while the AppContext is unloading.</value>
+  </data>
+  <data name="AssemblyLoadContext_Constructor_CollectibleNotSupported" xml:space="preserve">
+    <value>Collectible AssemblyLoadContext are not supported.</value>
+  </data>
+  <data name="AssemblyLoadContext_Unload_AlreadyUnloaded" xml:space="preserve">
+    <value>This instance is already being unloaded.</value>
+  </data>
+  <data name="AssemblyLoadContext_Unload_CannotUnloadIfNotCollectible" xml:space="preserve">
+    <value>Cannot Unload a non collectible AssemblyLoadContext.</value>
+  </data>
+  <data name="AssemblyLoadContext_Verify_NotUnloading" xml:space="preserve">
+    <value>This instance is being unloaded and LoadFromXXX methods can no longer be used.</value>
+  </data>
   <data name="AssertionFailed" xml:space="preserve">
     <value>Assertion failed.</value>
   </data>
