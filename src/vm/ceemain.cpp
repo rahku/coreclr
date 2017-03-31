@@ -3396,18 +3396,4 @@ void ContractRegressionCheck()
 
 #endif // ENABLE_CONTRACTS_IMPL
 
-
 #endif // CROSSGEN_COMPILE
-
-
-//
-// GetOSVersion - OS does not provide apis to get the OSVersion
-//
-BOOL GetOSVersion(LPOSVERSIONINFO lposVer)
-{
-    if (lposVer == nullptr)
-        return FALSE;
-    memset(lposVer, 0, sizeof(OSVERSIONINFO));
-    lposVer->dwPlatformId = VER_PLATFORM_WIN32_NT;
-    return TRUE;
-}
