@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="dogfood">
+  <PropertyGroup>
+    <BuildForWindows7>false</BuildForWindows7>
+    <TargetWindowsOS>8.1</TargetWindowsOS>
+  </PropertyGroup>
+  <Import Project="$(_NTDRIVE)$(_NTROOT)\ndp\clr\clr.props" />
+
+  <!--Leaf project Properties-->
+  <PropertyGroup>
+    <BuildCoreBinaries>true</BuildCoreBinaries>
+    <BuildSysBinaries>true</BuildSysBinaries>
+    <OutputName>UWPShim</OutputName>
+    <TargetType>PROGRAM</TargetType>
+    <LinkSubsystem>WINDOWS</LinkSubsystem>
+    <LinkOSVersion>6.02</LinkOSVersion>
+    <SubsystemWinVer>6.02</SubsystemWinVer>
+    <Win32WinNt>0x0602</Win32WinNt>    
+    <EntryPoint>wmain</EntryPoint>
+    <ClAdditionalOptions>$(ClAdditionalOptions) -DUNICODE -D_UNICODE</ClAdditionalOptions>
+    <LinkAdditionalOptions>$(LinkAdditionalOptions) /APPCONTAINER</LinkAdditionalOptions>
+    <ClDefines>
+      $(ClDefines);
+      WINAPI_FAMILY=WINAPI_FAMILY_APP;
+      NTDDI_VERSION=NTDDI_WIN8;
+    </ClDefines>    
+  </PropertyGroup>
+
+  <ItemGroup>
+    <TargetLib Include="$(ExternalAPIsPath)\vctools\Dev14\lib\ret\$(_BuildArch)\vc\app\msvcrt.lib" />
+    <TargetLib Include="$(ExternalAPIsPath)\vctools\Dev14\lib\ret\$(_BuildArch)\vc\app\vcruntime.lib" />  
+    <TargetLib Include="$(ExternalAPIsPath)\UnifiedCRT\lib\$(BuildArchitecture)\ucrt.lib" />  
+    <TargetLib Include="$(SdkLibPath)\api-ms-win-core-winrt-l1-1-0.lib" Condition="'$(_BuildArch)'!='arm64'" /> <!-- for RoInitialize -->
+    <TargetLib Include="$(SdkLibPath)\mincore.lib" /> 
+    <TargetLib Include="$(CLRLibPath)\UWPHost.lib">
+      <ProjectReference>..\UWPHost\UWPHost.nativeproj</ProjectReference>
+    </TargetLib>
+  </ItemGroup>
+
+  <ItemGroup>
+      <RCResourceFile Include="native.rc" />
+  </ItemGroup>
+  <ItemGroup>
+     <CppCompile Include="..\UWPShim.cpp" />
+  </ItemGroup>
+
+  <Import Project="$(_NTDRIVE)$(_NTROOT)\ndp\clr\clr.targets" />
+</Project>
+

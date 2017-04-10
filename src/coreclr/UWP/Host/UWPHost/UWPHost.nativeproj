@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="dogfood">
+  <!--*****************************************************-->
+  <!--This MSBuild project file was automatically generated-->
+  <!--from the original SOURCES/DIRS file by the KBC tool.-->
+  <!--*****************************************************-->
+  <!--Import the settings-->
+  <PropertyGroup>
+    <BuildForWindows7>false</BuildForWindows7>
+    <TargetWindowsOS>8.1</TargetWindowsOS>
+  </PropertyGroup>
+  <Import Project="$(_NTDRIVE)$(_NTROOT)\ndp\clr\clr.props" />
+
+  <!--Leaf project Properties-->
+  <PropertyGroup>
+    <BuildCoreBinaries>true</BuildCoreBinaries>
+    <BuildSysBinaries>true</BuildSysBinaries>
+    <OutputName>UWPHost</OutputName>
+    <TargetType>DYNLINK</TargetType>
+    <LinkSubsystem>WINDOWS</LinkSubsystem>
+    <DllDef>$(IntermediateOutputDirectory)\UWPHost.def</DllDef>
+    <ClAdditionalOptions>$(ClAdditionalOptions) -DUNICODE -D_UNICODE</ClAdditionalOptions>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <TargetLib Include="$(CoreSystemCrt)" />
+    <TargetLib Include="$(SdkLibPath)\mincore.lib" /> 
+    <TargetLib Include="$(SdkLibPath)\api-ms-win-core-winrt-string-l1-1-0.lib" /> <!-- for WindowsGetStringRawBuffer -->
+    
+    <!-- This APISet exports functions for working with AppX packages -->
+    <TargetLib Include="$(ExternalAPIsPath)\Win9CoreSystem\sdk\lib\$(BuildArchitecture)\api-ms-win-appmodel-runtime-l1-1-1.lib" />
+  </ItemGroup>
+
+  <ItemGroup>
+      <RCResourceFile Include="native.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <CppCompile Include="..\HostEnvironment.cpp" />
+    <CppCompile Include="..\UWPHost.cpp" />
+    <CppPreprocess Include="..\UWPHost.def">
+        <FinalOutput>$(IntermediateOutputDirectory)\UWPHost.def</FinalOutput>
+        <AdditionalOptions>/TC</AdditionalOptions>
+    </CppPreprocess>
+  </ItemGroup>
+  <!--Import the targets-->
+  <Import Project="$(_NTDRIVE)$(_NTROOT)\ndp\clr\clr.targets" />
+</Project>

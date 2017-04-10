@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <BuildInPhase1>true</BuildInPhase1>
+    <BuildInPhaseDefault>false</BuildInPhaseDefault>
+    <BuildCoreBinaries>true</BuildCoreBinaries>
+    <BuildSysBinaries>true</BuildSysBinaries>
+  </PropertyGroup>
+  <Import Project="$(_NTDRIVE)$(_NTROOT)\ndp\clr\clr.props" />
+
+
+  <PropertyGroup>
+    <RunCopyProductFilesAfterTargets>Build</RunCopyProductFilesAfterTargets>
+  </PropertyGroup>
+  <ItemGroup>
+    <CoreRuntimeTargets Include="$(MSBuildThisFileDirectory)\Microsoft.Net.CoreRuntime.targets" />
+  </ItemGroup>  
+
+  <!-- Create the layouts for VSIntegration -->
+  <ItemGroup>
+    <ProductFile Include="@(CoreRuntimeTargets)">
+      <ProductName>CoreRuntime</ProductName>
+      <ProductPath>dev14Layout\MSBuild\Microsoft\.NetNative</ProductPath>
+    </ProductFile>
+    <ProductFile Include="$(MSBuildThisFileDirectory)\dev14\Microsoft.Net.CoreRuntime.Settings.targets">
+      <ProductName>CoreRuntime</ProductName>
+      <ProductPath>dev14Layout\MSBuild\Microsoft\.NetNative</ProductPath>
+    </ProductFile>
+    <ProductFile Include="$(MSBuildThisFileDirectory)\dev14\Microsoft.Net.CoreRuntime.ImportBefore.targets">
+      <ProductName>CoreRuntime</ProductName>
+      <ProductPath>dev14Layout\MSBuild\14.0\Microsoft.Common.targets\ImportBefore</ProductPath>
+    </ProductFile>
+    <ProductFile Include="$(MSBuildThisFileDirectory)\dev14\Microsoft.Net.CoreRuntime.ImportAfter.targets">
+      <ProductName>CoreRuntime</ProductName>
+      <ProductPath>dev14Layout\MSBuild\14.0\Microsoft.Common.targets\ImportAfter</ProductPath>
+    </ProductFile>
+
+    <!-- dev15 layouts -->
+
+    <ProductFile Include="@(CoreRuntimeTargets)">
+      <ProductName>CoreRuntime</ProductName>
+      <ProductPath>dev15Layout\MSBuild\15.0\.Net\CoreRuntime</ProductPath>
+    </ProductFile>
+    <ProductFile Include="$(MSBuildThisFileDirectory)\dev15\Microsoft.Net.CoreRuntime.Settings.targets">
+      <ProductName>CoreRuntime</ProductName>
+      <ProductPath>dev15Layout\MSBuild\15.0\.Net\CoreRuntime</ProductPath>
+    </ProductFile>
+  </ItemGroup>
+  <Target Name="Build" />
+
+
+  <!-- Project references -->
+  <Import Project="$(_NTDRIVE)$(_NTROOT)\ndp\clr\clr.targets" />  
+</Project>

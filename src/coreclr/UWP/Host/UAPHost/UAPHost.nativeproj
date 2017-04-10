@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="dogfood">
+  <!--*****************************************************-->
+  <!--This MSBuild project file was automatically generated-->
+  <!--from the original SOURCES/DIRS file by the KBC tool.-->
+  <!--*****************************************************-->
+  <!--Import the settings-->
+  <PropertyGroup>
+    <BuildForWindows7>false</BuildForWindows7>
+    <TargetWindowsOS>8.1</TargetWindowsOS>
+  </PropertyGroup>
+  <Import Project="$(_NTDRIVE)$(_NTROOT)\ndp\clr\clr.props" />
+
+  <!--Leaf project Properties-->
+  <PropertyGroup>
+    <BuildCoreBinaries>true</BuildCoreBinaries>
+    <BuildSysBinaries>true</BuildSysBinaries>
+    <OutputName>UAPHost</OutputName>
+    <TargetType>DYNLINK</TargetType>
+    <LinkSubsystem>WINDOWS</LinkSubsystem>
+    <LinkAdditionalOptions>$(LinkAdditionalOptions) /noentry</LinkAdditionalOptions>
+    <ClAdditionalOptions>$(ClAdditionalOptions) -DUNICODE -D_UNICODE</ClAdditionalOptions>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="UWPHost.nativeproj" />
+    <TargetLib Include="$(CoreSystemCrt)" />
+    <TargetLib Include="$(SdkLibPath)\mincore.lib" />
+    <TargetLib Include="$(ClrLibPath)\UWPHost.lib" />
+  </ItemGroup>
+
+  <ItemGroup>
+      <RCResourceFile Include="native.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <CppCompile Include="..\UAPHost.cpp" />
+  </ItemGroup>
+  <!--Import the targets-->
+  <Import Project="$(_NTDRIVE)$(_NTROOT)\ndp\clr\clr.targets" />
+</Project>

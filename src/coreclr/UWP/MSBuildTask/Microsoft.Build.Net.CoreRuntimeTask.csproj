@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <AllowCrossTargeting>true</AllowCrossTargeting>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <Import Project="$(_NTDRIVE)$(_NTROOT)\ndp\clr\clr.props" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{49082C55-62B7-4DEC-BC9E-3F57945AC37E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Microsoft.Build.Net.CoreRuntimeTask</RootNamespace>
+    <AssemblyName>Microsoft.Build.Net.CoreRuntimeTask</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    
+    <!-- turn off CLS compliant check to make it work with CCI code -->
+    <AssemblyAttributeClsCompliant>false</AssemblyAttributeClsCompliant>
+  </PropertyGroup>
+  <!-- Default configurations to help VS understand the options -->
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|amd64' ">
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|amd64' ">
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="ErrorCodes.cs" />
+    <Compile Include="Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="WireUpCoreRuntime.cs" />
+    <Compile Include="MergePriConfigTask.cs" />
+    <Compile Include="MergeResWFilesTask.cs" />
+    <Compile Include="ResourceHandlingTask.cs" />
+  </ItemGroup>  
+
+  <ItemGroup>
+    <ProductFile Include="$(IntermediateOutputPath)\$(AssemblyName).dll">
+      <ProductName>CoreRuntime</ProductName>
+      <ProductPath>dev14Layout\MSBuild\Microsoft\.NetNative</ProductPath>
+    </ProductFile>
+    <ProductFile Include="$(IntermediateOutputPath)\$(AssemblyName).dll">
+      <ProductName>CoreRuntime</ProductName>
+      <ProductPath>dev15Layout\MSBuild\15.0\.Net\CoreRuntime</ProductPath>
+    </ProductFile>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="Microsoft.Build" />
+    <Reference Include="Microsoft.Build.Framework" />
+    <Reference Include="Microsoft.Build.Utilities.v4.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <!-- Project references -->
+  <Import Project="$(_NTDRIVE)$(_NTROOT)\ndp\clr\src\ToolBox\ApiCompat\Microsoft.CCI\Microsoft.Cci.Sources.targets" />
+  <Import Project="$(_NTDRIVE)$(_NTROOT)\ndp\clr\clr.targets" />  
+</Project>

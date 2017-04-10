@@ -1,0 +1,43 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--*****************************************************-->
+  <!--This MSBuild project file was automatically generated-->
+  <!--from the original SOURCES/DIRS file by the KBC tool.-->
+  <!--*****************************************************-->
+  <!--Import the settings-->
+  <Import Project="$(_NTDRIVE)$(_NTROOT)\ndp\clr\xplat\SetHostWinx86.props" />
+  <Import Project="$(_NTDRIVE)$(_NTROOT)\ndp\clr\clr.props" />
+  <!--Leaf project Properties-->
+  
+  <PropertyGroup>
+    <OutputName>CopyWin32Resources</OutputName>
+    <TargetType>PROGRAM</TargetType>
+    <LinkSubsystem>console</LinkSubsystem>
+    <EntryPoint>wmain</EntryPoint>
+    <LinkNoLibraries>false</LinkNoLibraries>
+    <LinkNoWin32Libraries>false</LinkNoWin32Libraries>
+    <LinkGenerateManifest>true</LinkGenerateManifest>
+    <LinkAdditionalOptions>$(LinkAdditionalOptions) /MANIFEST</LinkAdditionalOptions>
+    <ClAdditionalOptions>$(ClAdditionalOptions) -DUNICODE -D_UNICODE</ClAdditionalOptions>
+  </PropertyGroup>
+
+  <!--Leaf Project Items-->
+  <ItemGroup>
+    <TargetLib Include="$(SdkLibPath)\imagehlp.lib" />
+    <CppCompile Include="CopyWin32Resources.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <RCResourceFile Include="native.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProductFile Include="$(IntermediateOutputPath)\$(OutputName).exe">
+      <ProductName>CoreRuntime</ProductName>
+      <ProductPath>dev14Layout\MSBuild\Microsoft\.NetNative</ProductPath>
+    </ProductFile>
+    <ProductFile Include="$(IntermediateOutputPath)\$(OutputName).exe">
+      <ProductName>CoreRuntime</ProductName>
+      <ProductPath>dev15Layout\MSBuild\15.0\.Net\CoreRuntime</ProductPath>
+    </ProductFile>
+  </ItemGroup> 
+  <!--Import the targets-->
+  <Import Project="$(_NTDRIVE)$(_NTROOT)\ndp\clr\clr.targets" />
+</Project>

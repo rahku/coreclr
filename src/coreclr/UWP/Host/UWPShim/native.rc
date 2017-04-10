@@ -1,0 +1,4 @@
+#define FX_VER_FILEDESCRIPTION_STR "Microsoft CoreCLR Shim-Host for UWP apps\0"
+
+#include <fxver.h>
+#include <fxver.rc>
